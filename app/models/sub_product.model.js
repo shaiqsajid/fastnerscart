@@ -6,26 +6,12 @@ const SubProductSchema = mongoose.Schema({
     model: String,
     image_s:String,
     image_b:String,
-    size:[{
-        type:Schema.Types.ObjectId,
-        ref:'Size',
-        required:true
-    }],
-    length:[{
-        type:Schema.Types.ObjectId,
-        ref:'Length',
-        required:true
-    }],
+    
     dimensions:[{
         type:Schema.Types.ObjectId,
-        ref:'Dimensions',
-        required:true
+        ref:'Dimensions'
     }],
-    amount:[{
-        type:Schema.Types.ObjectId,
-        ref:'Amount',
-        required:true
-    }],
+    
 	product : { type: Schema.Types.ObjectId, ref: 'Product' }
 });
 

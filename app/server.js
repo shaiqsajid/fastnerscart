@@ -1,7 +1,8 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 
 // Configuring the database
 const dbConfig = require('./config/mongodb.config');
@@ -17,7 +18,7 @@ mongoose.connect(dbConfig.url)
     console.log('Could not connect to MongoDB.');
     process.exit();
 });
-
+require('./routes/subproducts.routes')(app)
 require('./routes/products.routes')(app);
 require('./routes/companies.routes')(app);
 
