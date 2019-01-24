@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-
+const port=process.env.PORT||3002;
 // Configuring the database
 const dbConfig = require('./config/mongodb.config');
 const mongoose = require('mongoose');
@@ -23,7 +23,7 @@ require('./routes/products.routes')(app);
 require('./routes/companies.routes')(app);
 
 // Create a Server
-var server = app.listen(2023, function () {
+var server = app.listen(port, function () {
 
   var host = server.address().address
   var port = server.address().port
