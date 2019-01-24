@@ -51,8 +51,8 @@ exports.findById = (req, res) => {
 };
 exports.findAllSubPro= (req, res) => {
 	SubProduct.find()
-	.populate('dimensions')
-	.populate('product')
+	//.populate('dimensions')
+	//.populate('product')
 	.exec(function (err, subproduct) {
 		if (err){
 			if(err.kind === 'ObjectId') {
@@ -101,8 +101,11 @@ exports.findByName = (req, res) => {
 };
 
 // Find all products by a CompanyId
-exports.findByCompanyId = (req, res) => {
-    Product.find({ company : req.params.companyId })
+exports.findByProductId = (req, res) => {
+	
+    SubProduct.find({ product : req.params.productId })
+	//.populate('dimensions')
+	//.populate('product')
 	.exec(function (err, products) {
 		if (err){
 			if(err.kind === 'ObjectId') {

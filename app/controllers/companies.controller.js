@@ -1,10 +1,7 @@
 const Company = require('../models/company.model.js');
 const Product = require('../models/product.model.js');
 const SubProduct = require('../models/sub_product.model');
-const Size = require('../models/size.model');
-const Length = require('../models/length.model');
 const Dimensions = require('../models/dimensions.model');
-const Amount = require('../models/amount.model');
 
 exports.init = (req, res) => {
   var astm = new Company({ 
