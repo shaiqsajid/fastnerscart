@@ -29,6 +29,45 @@ dimensions.save((err,doc)=>{
 
 
 }
+// Find a subproduct by id
+exports.findById = (req, res) => {
+	SubProduct.findOne({ _id: req.params.id })
+	.populate('dimensions')
+	.populate('product')
+	.exec(function (err, subproduct) {
+		if (err){
+			if(err.kind === 'ObjectId') {
+				return res.status(404).send({
+					message: "Student not found with given firstname " + req.params.firstname
+				});                
+			}
+			return res.status(500).send({
+				message: "Error retrieving Student with given firstname" + req.params.firstname
+			});
+		}
+					
+		res.send(subproduct);
+	});
+};
+exports.findAllSubPro= (req, res) => {
+	SubProduct.find()
+	.populate('dimensions')
+	.populate('product')
+	.exec(function (err, subproduct) {
+		if (err){
+			if(err.kind === 'ObjectId') {
+				return res.status(404).send({
+					message: "Student not found with given firstname " + req.params.firstname
+				});                
+			}
+			return res.status(500).send({
+				message: "Error retrieving Student with given firstname" + req.params.firstname
+			});
+		}
+					
+		res.send(subproduct);
+	});
+};
 exports.findAll = (req, res) => {
 	
 	Product.find()
