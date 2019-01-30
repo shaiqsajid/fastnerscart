@@ -8,4 +8,5 @@ module.exports = function(app) {
 	
 	// Find all Products of a Company
     app.get('/api/products/company/:companyId', products.findByCompanyId);
+    app.post('/api/product/shop',products.productForShop);
 }
