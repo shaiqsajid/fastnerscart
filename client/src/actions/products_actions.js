@@ -14,7 +14,7 @@ import { PRODUCT_SERVER } from '../components/utils/misc';
 
 export function getProductsBySell(){
     //?sortBy=sold&order=desc&limit=100
-    const request = axios.get(`${PRODUCT_SERVER}`)
+    const request = axios.get(`${PRODUCT_SERVER}/items`)
                     .then(response => response.data);
 
     return {
@@ -25,7 +25,7 @@ export function getProductsBySell(){
 }
 
 export function getProductsByArrival(){
-    const request = axios.get(`${PRODUCT_SERVER}`)
+    const request = axios.get(`${PRODUCT_SERVER}/items`)
     .then(response => response.data);
 
     return {
@@ -41,7 +41,7 @@ export function getProductsToShop(skip, limit,filters =[], previousState = []){
         filters
     }
 
-    const request = axios.post(`${'/api/product/shop'}`,data)
+    const request = axios.post(`${PRODUCT_SERVER}/shop`,data)
                 .then(response => {
                     let newState = [
                         ...previousState,
@@ -62,7 +62,7 @@ export function getProductsToShop(skip, limit,filters =[], previousState = []){
 
 export function addProduct(datatoSubmit){
 
-    const request = axios.post(`${PRODUCT_SERVER}/article`,datatoSubmit)
+    const request = axios.post(`${PRODUCT_SERVER}/pro_item`,datatoSubmit)
                     .then(response => response.data);
 
     return {
@@ -88,7 +88,7 @@ export function clearProduct(){
 
 export function getBrands(){
 
-    const request = axios.get(`${'/api/products'}`)
+    const request = axios.get(`${PRODUCT_SERVER}/brands`)
                 .then(response => response.data );
 
     return {
@@ -99,7 +99,7 @@ export function getBrands(){
 }
 
 export function getWoods(){
-    const request = axios.get(`${'/api/companies'}`)
+    const request = axios.get(`${PRODUCT_SERVER}/types`)
     .then(response => response.data );
 
     return {

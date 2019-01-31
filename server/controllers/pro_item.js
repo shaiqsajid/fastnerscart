@@ -2,6 +2,7 @@ const ProType = require('../models/pro_type');
 const ProItem=require('../models/pro_item');
 const Dimension=require('../models/dimensions');
 exports.addProItem=(req,res)=>{
+	console.log(req.body);
 	var proItem=new ProItem(req.body);
 	proItem.save((err,doc)=>{
 		if(err) return res.status(400).json({success: false,message: err });
@@ -16,12 +17,12 @@ dimensions.save((err,doc)=>{
 	if(err) return res.json({success:false,message:err});
 	
 	ProItem.findOneAndUpdate(
-	{_id: req.body.proItem},
+	{_id: req.body.pro_item},
 	{ $push:{ dimensions:doc._id}},
 	{ new: true },
 	(err,doc)=>{
 		if(err) return res.json({success:false,err});
-		res.status(200).json(doc.cart)
+		//res.status(200).json({})
 	}
 );
 	res.status(200).json({success:true,dimensions:doc});
@@ -67,7 +68,8 @@ exports.findAllProItems= (req, res) => {
 			});
 		}
 					
-		res.status(200).json({success:true,productItems:proItems});
+		//res.status(200).json({success:true,productItems:proItems});
+		res.status(200).send(proItems);
 	});
 };
 
@@ -129,6 +131,6 @@ exports.findByProTypetId = (req, res) => {
 			});
 		}
 					
-		res.status(200).json({success:true,proItems:products});
+		res.status(200).json({success:true,proItems:proItms});
 	});
 };

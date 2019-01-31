@@ -4,7 +4,8 @@ const ProType = require('../models/pro_type');
 exports.findAll = (req, res) => {
 	ProBrand.find()
     .then(brands => {
-        res.status(200).json({suceess: true,brands:brands});
+				//res.status(200).json({suceess: true,brands:brands});
+				res.status(200).send(brands);
     }).catch(err => {
 				res.status(500).json({suceess: false,message: err.message});   
 			 });

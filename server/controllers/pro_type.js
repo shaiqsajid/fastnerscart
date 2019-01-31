@@ -5,7 +5,8 @@ exports.findAll = (req, res) => {
 	
 	ProType.find()
     .then(proTypes => {
-        res.status(200).json({success:true,pro_types:proTypes});
+	   // res.status(200).json({success:true,pro_types:proTypes});
+	   res.status(200).send(proTypes);
     }).catch(err => {
         res.status(500).send({
 			success:false,

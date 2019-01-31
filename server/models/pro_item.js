@@ -10,7 +10,10 @@ const ProItemSchema = mongoose.Schema({
     model: String,
     image_s:String,
     image_b:String,
-    
+    description:String,
+    shipping:String,
+    instock:String,
+    publish:String,
     dimensions:[{
         type:Schema.Types.ObjectId,
         ref:'Dimensions'

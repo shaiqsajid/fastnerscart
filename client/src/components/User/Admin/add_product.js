@@ -32,6 +32,23 @@ class AddProduct extends Component {
                 validationMessage:'',
                 showlabel: true
             },
+            model: {
+                element: 'input',
+                value: '',
+                config:{
+                    label: 'Product name',
+                    name: 'model_input',
+                    type: 'text',
+                    placeholder: 'Enter your model'
+                },
+                validation:{
+                    required: true
+                },
+                valid: false,
+                touched: false,
+                validationMessage:'',
+                showlabel: true
+            },
             description: {
                 element: 'textarea',
                 value: '',
@@ -136,27 +153,27 @@ class AddProduct extends Component {
                 validationMessage:'',
                 showlabel: true
             },
-            frets: {
-                element: 'select',
-                value: '',
-                config:{
-                    label: 'Frets',
-                    name: 'frets_input',
-                    options:[
-                        {key:20,value:20},
-                        {key:21,value:21},
-                        {key:22,value:22},
-                        {key:24,value:24}
-                    ]
-                },
-                validation:{
-                    required: true
-                },
-                valid: false,
-                touched: false,
-                validationMessage:'',
-                showlabel: true
-            },
+            // frets: {
+            //     element: 'select',
+            //     value: '',
+            //     config:{
+            //         label: 'Frets',
+            //         name: 'frets_input',
+            //         options:[
+            //             {key:20,value:20},
+            //             {key:21,value:21},
+            //             {key:22,value:22},
+            //             {key:24,value:24}
+            //         ]
+            //     },
+            //     validation:{
+            //         required: true
+            //     },
+            //     valid: false,
+            //     touched: false,
+            //     validationMessage:'',
+            //     showlabel: true
+            // },
             publish: {
                 element: 'select',
                 value: '',
@@ -177,6 +194,16 @@ class AddProduct extends Component {
                 showlabel: true
             },
             images:{
+                value:[],
+                validation:{
+                    required: false
+                },
+                valid: true,
+                touched: false,
+                validationMessage:'',
+                showlabel: false
+            },
+            images_b:{
                 value:[],
                 validation:{
                     required: false
@@ -224,9 +251,9 @@ class AddProduct extends Component {
         event.preventDefault();
         
         let dataToSubmit = generateData(this.state.formdata,'products');
-        let formIsValid = isFormValid(this.state.formdata,'products')
+        //let formIsValid = isFormValid(this.state.formdata,'products')
 
-        if(formIsValid){
+        if(true){
             this.props.dispatch(addProduct(dataToSubmit)).then(()=>{
                 if( this.props.products.addProduct.success){
                     this.resetFieldHandler();
@@ -267,7 +294,17 @@ class AddProduct extends Component {
             formdata:  newFormData
         })
     }
+    imagesHandlerBig = (images) => {
+        const newFormData = {
+            ...this.state.formdata
+        }
+        newFormData['images_b'].value = images;
+        newFormData['images_b'].valid = true;
 
+        this.setState({
+            formdata:  newFormData
+        })
+    }
     render() {
         return (
             <UserLayout>
@@ -280,7 +317,10 @@ class AddProduct extends Component {
                             imagesHandler={(images)=> this.imagesHandler(images)}
                             reset={this.state.formSuccess}
                         />
-
+ <FileUpload
+                            imagesHandler={(images)=> this.imagesHandlerBig(images)}
+                            reset={this.state.formSuccess}
+                        />
                         <FormField
                             id={'name'}
                             formdata={this.state.formdata.name}
@@ -327,11 +367,7 @@ class AddProduct extends Component {
                             change={(element) => this.updateForm(element)}
                         />
 
-                        <FormField
-                            id={'frets'}
-                            formdata={this.state.formdata.frets}
-                            change={(element) => this.updateForm(element)}
-                        />
+                    
 
                         <div className="form_devider"></div>
 

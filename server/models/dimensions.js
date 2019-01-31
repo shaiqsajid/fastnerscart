@@ -1,4 +1,4 @@
-const Item=require('./item');
+
 const mongoose = require('mongoose'), Schema = mongoose.Schema;
 
 const DimensionsSchema = mongoose.Schema({
@@ -35,15 +35,20 @@ const DimensionsSchema = mongoose.Schema({
         required:true,
         type:String
         },
-    item:{type: Schema.Types.ObjectId, ref: 'Item'},
+    pro_item:{type: Schema.Types.ObjectId, ref: 'ProItems'},
     amount:{
         required:true,
         type:String
         },
-        type:{
-            required:true,
-            type:String
-            }
+    type:{
+        required:true,
+         type:String
+         },
+    standard:{
+        required:true,
+         type:String
+         }
+            
 
 });
 
