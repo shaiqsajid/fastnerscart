@@ -2,7 +2,7 @@ const ProType = require('../models/pro_type');
 const ProItem=require('../models/pro_item');
 const Dimension=require('../models/dimensions');
 exports.addProItem=(req,res)=>{
-	console.log(req.body);
+	
 	var proItem=new ProItem(req.body);
 	proItem.save((err,doc)=>{
 		if(err) return res.status(400).json({success: false,message: err });

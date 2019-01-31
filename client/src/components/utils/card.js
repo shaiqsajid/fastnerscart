@@ -3,9 +3,9 @@ import MyButton from './button';
 
 class Card extends Component {
 
-    renderCardImage(images){
-        if(images.length > 0){
-            return images[0].url
+    renderCardImage(image_s){
+        if(image_s.length > 0){
+            return image_s[0].url
         } else {
             return '/images/image_not_availble.png'
         }
@@ -19,14 +19,14 @@ class Card extends Component {
                 <div
                     className="image"
                     style={{
-                        background:`url('/images/image_not_availble.png') no-repeat`
+                        background:`url(${this.renderCardImage(props.image_s)}) no-repeat`
                     }}
                 >  </div>
                     <div className="action_container">
                         <div className="tags">
                             {/* <div className="brand">{props.poduct.name}</div> */}
                             <div className="name">{props.name}</div>
-                            <div className="brand">${props.model}</div>
+                            <div className="brand">{props.standard}</div>
                         </div>
                     
                     { props.grid ?

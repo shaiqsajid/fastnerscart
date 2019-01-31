@@ -32,11 +32,28 @@ class AddProduct extends Component {
                 validationMessage:'',
                 showlabel: true
             },
+            standard: {
+                element: 'input',
+                value: '',
+                config:{
+                    label: 'Product standard',
+                    name: 'standard_input',
+                    type: 'text',
+                    placeholder: 'Enter item standard'
+                },
+                validation:{
+                    required: true
+                },
+                valid: false,
+                touched: false,
+                validationMessage:'',
+                showlabel: true
+            },
             model: {
                 element: 'input',
                 value: '',
                 config:{
-                    label: 'Product name',
+                    label: 'Product model',
                     name: 'model_input',
                     type: 'text',
                     placeholder: 'Enter your model'
@@ -66,24 +83,7 @@ class AddProduct extends Component {
                 validationMessage:'',
                 showlabel: true
             },
-            price: {
-                element: 'input',
-                value: '',
-                config:{
-                    label: 'Product price',
-                    name: 'price_input',
-                    type: 'number',
-                    placeholder: 'Enter your price'
-                },
-                validation:{
-                    required: true
-                },
-                valid: false,
-                touched: false,
-                validationMessage:'',
-                showlabel: true
-            },
-            brand: {
+            pro_brand: {
                 element: 'select',
                 value: '',
                 config:{
@@ -137,11 +137,11 @@ class AddProduct extends Component {
                 validationMessage:'',
                 showlabel: true
             },
-            wood: {
+            pro_type: {
                 element: 'select',
                 value: '',
                 config:{
-                    label: 'Wood material',
+                    label: 'Product Type',
                     name: 'wood_input',
                     options:[]
                 },
@@ -153,27 +153,6 @@ class AddProduct extends Component {
                 validationMessage:'',
                 showlabel: true
             },
-            // frets: {
-            //     element: 'select',
-            //     value: '',
-            //     config:{
-            //         label: 'Frets',
-            //         name: 'frets_input',
-            //         options:[
-            //             {key:20,value:20},
-            //             {key:21,value:21},
-            //             {key:22,value:22},
-            //             {key:24,value:24}
-            //         ]
-            //     },
-            //     validation:{
-            //         required: true
-            //     },
-            //     valid: false,
-            //     touched: false,
-            //     validationMessage:'',
-            //     showlabel: true
-            // },
             publish: {
                 element: 'select',
                 value: '',
@@ -193,7 +172,7 @@ class AddProduct extends Component {
                 validationMessage:'',
                 showlabel: true
             },
-            images:{
+            image_s:{
                 value:[],
                 validation:{
                     required: false
@@ -203,7 +182,7 @@ class AddProduct extends Component {
                 validationMessage:'',
                 showlabel: false
             },
-            images_b:{
+            image_b:{
                 value:[],
                 validation:{
                     required: false
@@ -253,7 +232,7 @@ class AddProduct extends Component {
         let dataToSubmit = generateData(this.state.formdata,'products');
         let formIsValid = isFormValid(this.state.formdata,'products')
 
-        if(true){
+        if(formIsValid){
             this.props.dispatch(addProduct(dataToSubmit)).then(()=>{
                 if( this.props.products.addProduct.success){
                     this.resetFieldHandler();
@@ -273,12 +252,12 @@ class AddProduct extends Component {
         const formdata = this.state.formdata;
 
         this.props.dispatch(getBrands()).then( response => {
-            const newFormData = populateOptionFields(formdata,this.props.products.brands,'brand');
+            const newFormData = populateOptionFields(formdata,this.props.products.brands,'pro_brand');
             this.updateFields(newFormData)
         })
 
         this.props.dispatch(getWoods()).then( response => {
-            const newFormData = populateOptionFields(formdata,this.props.products.woods,'wood');
+            const newFormData = populateOptionFields(formdata,this.props.products.woods,'pro_type');
             this.updateFields(newFormData)
         })
     }
@@ -287,8 +266,8 @@ class AddProduct extends Component {
         const newFormData = {
             ...this.state.formdata
         }
-        newFormData['images'].value = images;
-        newFormData['images'].valid = true;
+        newFormData['image_s'].value = images;
+        newFormData['image_s'].valid = true;
 
         this.setState({
             formdata:  newFormData
@@ -298,8 +277,8 @@ class AddProduct extends Component {
         const newFormData = {
             ...this.state.formdata
         }
-        newFormData['images_b'].value = images;
-        newFormData['images_b'].valid = true;
+        newFormData['image_b'].value = images;
+        newFormData['image_b'].valid = true;
 
         this.setState({
             formdata:  newFormData
@@ -326,24 +305,29 @@ class AddProduct extends Component {
                             formdata={this.state.formdata.name}
                             change={(element) => this.updateForm(element)}
                         />
-
+                        <FormField
+                            id={'model'}
+                            formdata={this.state.formdata.model}
+                            change={(element) => this.updateForm(element)}
+                        />
+                        <FormField
+                            id={'standard'}
+                            formdata={this.state.formdata.standard}
+                            change={(element) => this.updateForm(element)}
+                        />
                          <FormField
                             id={'description'}
                             formdata={this.state.formdata.description}
                             change={(element) => this.updateForm(element)}
                         />
 
-                         <FormField
-                            id={'price'}
-                            formdata={this.state.formdata.price}
-                            change={(element) => this.updateForm(element)}
-                        />
+                         
 
                         <div className="form_devider"></div>
 
                         <FormField
-                            id={'brand'}
-                            formdata={this.state.formdata.brand}
+                            id={'pro_brand'}
+                            formdata={this.state.formdata.pro_brand}
                             change={(element) => this.updateForm(element)}
                         />
 
@@ -362,8 +346,8 @@ class AddProduct extends Component {
                         <div className="form_devider"></div>
 
                         <FormField
-                            id={'wood'}
-                            formdata={this.state.formdata.wood}
+                            id={'pro_type'}
+                            formdata={this.state.formdata.pro_type}
                             change={(element) => this.updateForm(element)}
                         />
 

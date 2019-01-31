@@ -8,12 +8,13 @@ const ProItemSchema = mongoose.Schema({
         maxlenth:100
     },
     model: String,
-    image_s:String,
-    image_b:String,
+    image_s:[],
+    image_b:[],
     description:String,
     shipping:String,
     instock:String,
     publish:String,
+    standard:String,
     dimensions:[{
         type:Schema.Types.ObjectId,
         ref:'Dimensions'
