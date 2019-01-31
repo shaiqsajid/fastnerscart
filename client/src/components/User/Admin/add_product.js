@@ -251,7 +251,7 @@ class AddProduct extends Component {
         event.preventDefault();
         
         let dataToSubmit = generateData(this.state.formdata,'products');
-        //let formIsValid = isFormValid(this.state.formdata,'products')
+        let formIsValid = isFormValid(this.state.formdata,'products')
 
         if(true){
             this.props.dispatch(addProduct(dataToSubmit)).then(()=>{
