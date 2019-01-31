@@ -1,4 +1,4 @@
-const SubProduct=require('./sub_product');
+const Item=require('./item');
 const mongoose = require('mongoose'), Schema = mongoose.Schema;
 
 const DimensionsSchema = mongoose.Schema({
@@ -35,7 +35,7 @@ const DimensionsSchema = mongoose.Schema({
         required:true,
         type:String
         },
-    subProduct:{type: Schema.Types.ObjectId, ref: 'SubProduct'},
+    item:{type: Schema.Types.ObjectId, ref: 'Item'},
     amount:{
         required:true,
         type:String

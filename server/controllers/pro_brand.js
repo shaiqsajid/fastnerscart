@@ -1,23 +1,17 @@
-const Company = require('../models/company.js');
-const Product = require('../models/product.js');
-const SubProduct = require('../models/sub_product');
-const Dimensions = require('../models/dimensions');
-
-
+const ProBrand = require('../models/pro_brand');
+const ProType = require('../models/pro_type');
 
 exports.findAll = (req, res) => {
-	Company.find()
-    .then(products => {
-        res.send(products);
+	ProBrand.find()
+    .then(brands => {
+        res.status(200).json({suceess: true,brands:brands});
     }).catch(err => {
-        res.status(500).send({
-            message: err.message
-        });
-    });
+				res.status(500).json({suceess: false,message: err.message});   
+			 });
 };
 
 exports.init = (req, res) => {
-	var astm = new Company({ 
+	var astm = new ProBrand({ 
 	  name: 'ASTM', 
 	  details: 'ASTM details.....', 
   
@@ -29,12 +23,12 @@ exports.init = (req, res) => {
 	  console.log("astm is added")
 	  
 	  //astm now exists, so lets create a Product
-	  var blot = new Product({
+	  var blot = new ProType({
 		
 		name: "Bolt",
 		  details: "Bolt details",
 		  image:"images/bolt.png",
-		company: astm._id
+			pro_brand: astm._id
 	  });
 	  
   
@@ -45,12 +39,12 @@ exports.init = (req, res) => {
 		
 	  });
 	  
-	  var nut = new Product({
+	  var nut = new ProType({
 		
 			  name: "Nut",
 			  details: "Nut details",
 			  image:"images/nut.png",
-			  company: astm._id
+			  pro_brand: astm._id
 			  });
 	  
 			  nut.save(function (err) {
@@ -59,12 +53,12 @@ exports.init = (req, res) => {
 			  console.log("nut is added")
 			  });
   
-			  var pin = new Product({
+			  var pin = new ProType({
 		
 				  name: "Pin",
 				  details: "Pin details",
 				  image:"images/pin.png",
-				  company: astm._id
+				  pro_brand: astm._id
 				  });
 		  
 				  pin.save(function (err) {
@@ -73,12 +67,12 @@ exports.init = (req, res) => {
 				  console.log("pin is added")
 				  });
   
-				  var washer = new Product({
+				  var washer = new ProType({
 		
 					  name: "Washer",
 					  details: "Washer details",
 					  image:"images/washer.png",
-					  company: astm._id
+					  pro_brand: astm._id
 					  });
 			  
 					  blot.save(function (err) {
