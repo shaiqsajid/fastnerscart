@@ -19,6 +19,18 @@ export default function(state={},action){
             return {...state, brands: action.payload }
         case GET_WOODS:
             return {...state, woods: action.payload }
+        case ADD_BRAND:
+            return {
+                ...state, 
+                addBrand: action.payload.success , 
+                brands:action.payload.brands 
+            }
+        case ADD_WOOD:
+            return {
+                ...state, 
+                addWood: action.payload.success , 
+                woods:action.payload.woods 
+            }
         case GET_PRODUCTS_TO_SHOP:
             return {
                 ...state,

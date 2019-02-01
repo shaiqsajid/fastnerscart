@@ -4,6 +4,8 @@ import {
     GET_PRODUCTS_BY_ARRIVAL,
     GET_BRANDS,
     GET_WOODS,
+    ADD_BRAND,
+    ADD_TYPE,
     GET_PRODUCTS_TO_SHOP,
     ADD_PRODUCT,
     CLEAR_PRODUCT
@@ -85,6 +87,42 @@ export function clearProduct(){
 //////        CATEGORIES
 ////////////////////////////////////
 
+export function addBrand(dataToSubmit, existingBrands){
+    const request = axios.post(`${PRODUCT_SERVER}/brand`,dataToSubmit)
+    .then(response=>{
+        let brands = [
+            ...existingBrands,
+            response.data.brand
+        ];
+        return {
+            success: response.data.success,
+            brands
+        }
+    });
+    return {
+        type: ADD_BRAND,
+        payload: request
+    }
+}
+
+
+export function addProType(dataToSubmit, existingProType){
+    const request = axios.post(`${PRODUCT_SERVER}/wood`,dataToSubmit)
+    .then(response=>{
+        let proTypes = [
+            ...existingProType,
+            response.data.wood
+        ];
+        return {
+            success: response.data.success,
+            proTypes
+        }
+    });
+    return {
+        type: ADD_TYPE,
+        payload: request
+    }
+}
 
 export function getBrands(){
 
