@@ -119,6 +119,7 @@ class ManageTypes extends Component {
                 <div className="right">
                     
                 <form onSubmit={(event)=> this.submitForm(event)}>
+                <h2>Image</h2>
                 <FileUpload
                             imagesHandler={(images)=> this.imagesHandler(images)}
                             reset={this.state.formSuccess}
