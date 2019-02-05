@@ -15,6 +15,19 @@ exports.findAll = (req, res) => {
     });
 };
 
+//add protype
+exports.addProType=(req,res)=>{
+	const type = new ProType(req.body);
+
+    type.save((err,doc)=>{
+        if(err) return res.json({success:false,err});
+        res.status(200).json({
+            success: true,
+            types: doc
+        })
+    })
+};
+
 // Find a ProductType by Name
 exports.findByName = (req, res) => {
 	ProType.findOne({ name: req.params.proTypeName })

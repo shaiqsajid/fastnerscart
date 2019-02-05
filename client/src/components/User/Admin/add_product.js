@@ -6,7 +6,7 @@ import { update, generateData, isFormValid, populateOptionFields,resetFields} fr
 import FileUpload from '../../utils/Form/fileupload';
 
 import { connect } from 'react-redux';
-import { getBrands, getWoods,addProduct, clearProduct } from '../../../actions/products_actions';
+import { getBrands, getTypes,addProduct, clearProduct } from '../../../actions/products_actions';
 
 
 class AddProduct extends Component {
@@ -142,7 +142,7 @@ class AddProduct extends Component {
                 value: '',
                 config:{
                     label: 'Product Type',
-                    name: 'wood_input',
+                    name: 'type_input',
                     options:[]
                 },
                 validation:{
@@ -256,8 +256,8 @@ class AddProduct extends Component {
             this.updateFields(newFormData)
         })
 
-        this.props.dispatch(getWoods()).then( response => {
-            const newFormData = populateOptionFields(formdata,this.props.products.woods,'pro_type');
+        this.props.dispatch(getTypes()).then( response => {
+            const newFormData = populateOptionFields(formdata,this.props.products.types,'pro_type');
             this.updateFields(newFormData)
         })
     }

@@ -11,6 +11,20 @@ exports.findAll = (req, res) => {
 			 });
 };
 
+
+exports.addBrand=(req,res)=>{
+const proBrand=new ProBrand(req.body);
+
+proBrand.save((err,doc)=>{
+	if(err) return res.json({success:false,err});
+        res.status(200).json({
+            success:true,
+            brands: doc
+        })
+});
+
+};
+
 exports.init = (req, res) => {
 	var astm = new ProBrand({ 
 	  name: 'ASTM', 

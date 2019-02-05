@@ -99,7 +99,7 @@ exports.productItemsForShop=(req,res)=>{
 	ProItem.
 	find(findArgs).
 	populate('pro_type').
-	//populate('wood').
+
 	sort([[sortBy,order]]).
 	skip(skip).
 	limit(limit).
