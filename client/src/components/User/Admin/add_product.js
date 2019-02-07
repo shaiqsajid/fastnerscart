@@ -118,7 +118,7 @@ class AddProduct extends Component {
                 validationMessage:'',
                 showlabel: true
             },
-            available: {
+            instock: {
                 element: 'select',
                 value: '',
                 config:{
@@ -338,8 +338,8 @@ class AddProduct extends Component {
                         />
 
                          <FormField
-                            id={'available'}
-                            formdata={this.state.formdata.available}
+                            id={'instock'}
+                            formdata={this.state.formdata.instock}
                             change={(element) => this.updateForm(element)}
                         />
 

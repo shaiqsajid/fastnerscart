@@ -12,4 +12,5 @@ const formidable = require('express-formidable');
     app.get('/api/users/logout',auth,user.userLogout);
     app.post('/api/users/uploadimage',auth,admin,formidable(),user.uploadImage);
     app.get('/api/users/removeimage',auth,admin,user.removeImage);
+    app.post('/api/users/addToCart',auth,user.addToCart);
 };

@@ -19,7 +19,8 @@ import { PRODUCT_SERVER } from '../components/utils/misc';
 export function getProductDetail(id){
     const request = axios.get(`${PRODUCT_SERVER}/item/${id}`)
     .then(response=>{
-        return response.data[0]
+    
+        return response.data
     });
 
     return {

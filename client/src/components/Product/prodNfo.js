@@ -10,7 +10,7 @@ const ProdNfo = (props) => {
 
     const showProdTags = (detail) => (
         <div className="product_tags">
-            { detail.shipping ?
+            { detail.productItem.shipping ?
                 <div className="tag">
                     <div><FontAwesomeIcon icon={faTruck}/></div>
                     <div className="tag_text">
@@ -20,7 +20,7 @@ const ProdNfo = (props) => {
                 </div>
             :null
             }
-            { detail.available ?
+            { detail.productItem.instock ?
                 <div className="tag">
                     <div><FontAwesomeIcon icon={faCheck}/></div>
                     <div className="tag_text">
@@ -42,7 +42,7 @@ const ProdNfo = (props) => {
 
     const showProdActions = (detail) => (
         <div className="product_actions">
-            <div className="price">$ { detail.price }</div>
+            <div className="price"> ₹ { detail.productItem.dimensions[0].amount }</div>
             <div className="cart">
                 <MyButton
                     type="add_to_cart_link"
@@ -56,14 +56,14 @@ const ProdNfo = (props) => {
 
     const showProdSpecifications = (detail) => (
         <div className="product_specifications">
-            <h2>Specs:</h2>
+            <h2>Item Model:</h2>
             <div>
                 <div className="item">
-                    <strong>Frets:</strong> {detail.frets}
+                    <strong>Thread Type:</strong> {detail.productItem.model}
                 </div>
-                <div className="item">
+                {/* <div className="item">
                     <strong>Wood:</strong> {detail.wood.name}
-                </div>
+                </div> */}
             </div>
         </div>
     )
@@ -72,13 +72,13 @@ const ProdNfo = (props) => {
     const detail = props.detail;
     return (
         <div>
-            <h1>{detail.brand.name} {detail.name}</h1>
+            <h1>{detail.productItem.name} {detail.productItem.standard}</h1>
             <p>
-                {detail.description}
+                {detail.productItem.description}
             </p>
             { showProdTags(detail)}
-            { showProdActions(detail)}
-            { showProdSpecifications(detail)}
+            { showProdActions(detail)} 
+            { showProdSpecifications(detail)} 
         </div>
     );
 };

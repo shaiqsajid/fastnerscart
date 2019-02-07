@@ -13,10 +13,10 @@ class ProdImg extends Component {
 
 
     componentDidMount(){
-        if(this.props.detail.images.length > 0){
+        if(this.props.detail.productItem.image_b.length > 0){
             let lightboxImages = [];
 
-            this.props.detail.images.forEach(item=>{
+            this.props.detail.productItem.image_b.forEach(item=>{
                 lightboxImages.push(item.url)
             })
 
@@ -71,7 +71,7 @@ class ProdImg extends Component {
             <div className="product_image_container">
                 <div className="main_pic">
                     <div
-                        style={{background:`url(${this.renderCardImage(detail.images)}) no-repeat`}} 
+                        style={{background:`url(${this.renderCardImage(detail.productItem.image_b)}) no-repeat`}} 
                         onClick={()=> this.handleLightBox(0)}
                     >
                     </div>
