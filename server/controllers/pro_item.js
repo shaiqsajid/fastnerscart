@@ -1,4 +1,4 @@
-const ProType = require('../models/pro_type');
+const mongoose=require('mongoose');
 const ProItem=require('../models/pro_item');
 const Dimension=require('../models/dimensions');
 exports.addProItem=(req,res)=>{
@@ -72,7 +72,27 @@ exports.findAllProItems= (req, res) => {
 		res.status(200).send(proItems);
 	});
 };
+exports.itemById=(req,res)=>{
+	let type = req.query.type;
+    let items = req.query.id;
 
+    if(type === "array"){
+        let ids = req.query.id.split(',');
+        items = [];
+        items = ids.map(item=>{
+            return mongoose.Types.ObjectId(item)
+        })
+    }
+
+    ProItem.
+	find({ '_id':{$in:items}}).
+	populate('dimensions').
+    populate('pro_item').
+    populate('pro_brand').
+    exec((err,docs)=>{
+        return res.status(200).send(docs)
+    })
+};
 exports.productItemsForShop=(req,res)=>{
 
 	let order = req.body.order ? req.body.order : "desc";

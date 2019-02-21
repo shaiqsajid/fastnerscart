@@ -7,4 +7,5 @@ module.exports = function(app) {
 	app.get('/api/product/items', proItem.findAllProItems);	
 	app.get('/api/product/items_by_type_id/:proTypeId', proItem.findByProTypetId);
 	app.post('/api/product/shop',proItem.productItemsForShop);
+	app.get('/api/product/item_by_id',proItem.itemById);
 }
